@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="\"/>
+    <Version Value="7"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+        <UseDefaultCompilerOptions Value="True"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <TargetFileExt Value=".exe"/>
+      <Title Value="sdktest1"/>
+      <UseXPManifest Value="True"/>
+      <ActiveEditorIndexAtStart Value="1"/>
+    </General>
+    <VersionInfo>
+      <ProjectVersion Value=""/>
+      <Language Value=""/>
+      <CharSet Value=""/>
+    </VersionInfo>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <Units Count="5">
+      <Unit0>
+        <Filename Value="sdktest1.dpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="sdktest1"/>
+        <CursorPos X="25" Y="9"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="0"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="..\..\src\bprClasses.pas"/>
+        <UnitName Value="bprClasses"/>
+        <CursorPos X="1" Y="133"/>
+        <TopLine Value="133"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\..\src\bprSync.pas"/>
+        <UnitName Value="bprSync"/>
+        <CursorPos X="1" Y="52"/>
+        <TopLine Value="37"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\..\src\bprutils.pas"/>
+        <UnitName Value="bprUtils"/>
+        <CursorPos X="40" Y="5"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="11"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="E:\FPC_Laz\Lazarus\ide\aboutfrm.pas"/>
+        <UnitName Value="AboutFrm"/>
+        <CursorPos X="55" Y="107"/>
+        <TopLine Value="98"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="27" Column="27" TopLine="15"/>
+      </Position2>
+      <Position3>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="29" Column="49" TopLine="15"/>
+      </Position3>
+      <Position4>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position4>
+      <Position5>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="13" Column="56" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position6>
+      <Position7>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="79" Column="1" TopLine="67"/>
+      </Position7>
+      <Position8>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="28" Column="1" TopLine="19"/>
+      </Position8>
+      <Position9>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="88" Column="12" TopLine="68"/>
+      </Position9>
+      <Position10>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="91" Column="17" TopLine="68"/>
+      </Position10>
+      <Position11>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="43" Column="1" TopLine="29"/>
+      </Position11>
+      <Position12>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="96" Column="23" TopLine="79"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="28" Column="51" TopLine="22"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="99" Column="21" TopLine="87"/>
+      </Position14>
+      <Position15>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="33" Column="3" TopLine="22"/>
+      </Position15>
+      <Position16>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="64" Column="4" TopLine="51"/>
+      </Position16>
+      <Position17>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="63" Column="11" TopLine="51"/>
+      </Position17>
+      <Position18>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="34" Column="4" TopLine="23"/>
+      </Position18>
+      <Position19>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="91" Column="34" TopLine="79"/>
+      </Position19>
+      <Position20>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="89" Column="17" TopLine="84"/>
+      </Position20>
+      <Position21>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="21" Column="19" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="103" Column="29" TopLine="85"/>
+      </Position22>
+      <Position23>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="18" Column="5" TopLine="5"/>
+      </Position23>
+      <Position24>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="100" Column="26" TopLine="81"/>
+      </Position24>
+      <Position25>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="41" Column="14" TopLine="29"/>
+      </Position25>
+      <Position26>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="59" Column="16" TopLine="56"/>
+      </Position26>
+      <Position27>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="93" Column="1" TopLine="89"/>
+      </Position27>
+      <Position28>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="100" Column="40" TopLine="88"/>
+      </Position28>
+      <Position29>
+        <Filename Value="..\..\src\bprclasses.pas"/>
+        <Caret Line="1" Column="10" TopLine="1"/>
+      </Position29>
+      <Position30>
+        <Filename Value="..\..\src\bprSync.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="8"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="sdktest1"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)\"/>
+      <OtherUnitFiles Value="..\..\src\"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="True"/>
+      </SyntaxOptions>
+    </Parsing>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

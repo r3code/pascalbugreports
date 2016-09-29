@@ -1,0 +1,21 @@
+#summary bugreport.pas
+
+=bugreport.pas=
+
+=Классы=
+{{{
+  TBugReport = class(TObject)
+  public
+    property Time: TDateTime; // Время формирования отчета
+    property Title: String; // Заголовок отчета
+  end;
+
+  TBugReportClass = class of TBugReport;
+}}}
+
+=Переменные=
+{{{
+  BugReportClass: TBugReportClass; // Реальный класс создаваемого отчета по умолчанию
+}}}
+
+=Функции=

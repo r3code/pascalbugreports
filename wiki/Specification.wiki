@@ -1,0 +1,13 @@
+#summary Automatic bug-reporter Lazarus component.
+
+= Introduction =
+
+Pascal Bug Reports is the Lazarus (only?) component to provide a built-in LCL (only?) application for automatic reporting bugs from end user application to developers tech-support.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages

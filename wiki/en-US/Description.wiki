@@ -1,0 +1,4 @@
+#summary Pascal library for bug-repoerting
+
+=Description:=
+This is English-US description

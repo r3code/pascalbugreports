@@ -1,0 +1,176 @@
+#summary документация на библиотеку debugreport
+
+== bprLog ==
+
+функции для сообщения информации о событиях в программе.
+{{{
+ //procedure dbrlog(const s: string; const id: string ='');
+
+ //procedure dbrwarn(const s: string; const id: string ='');
+}}}
+функции для сообщения информации об ошибке в программе. ~~Вызов ошибки всегда порождает exception.~~
+{{{
+ procedure dbgraiseerror(const s: string; const id: string = '');
+
+ procedure dbgraiseerror(const s: string; const data : array of string; const id: string = ''); 
+}}}
+== bprClasses == 
+{{{
+ TMsgType = (dmsgLog, dmsgWarn, dmsgError);
+
+ type 
+   TBugReportElement = class(TObject)
+     procedure Msg(msgtype: TMsgType; const text: string; const data: array of string; const id : string); virtual; abstract;    
+   end;
+
+   TBugReportInfoGatherer = class(TObject)
+     function GetInfo(const id: AnsiString; const InputData: array of AnsiString; var DataText: AnsiString; var FilesCount: Integer): string; virtual; abstract;
+     function GetFileName(const Index: Integer): TFNString; virtual; abstract;
+   end;
+
+   TBugReportSender = class(TBugReportElement)  
+     function SendData(const ErrorText, ErrorID: AnsiString;
+      const FileNames: array of TFNString; FilesCount: Integer): Boolean; virtual; abstract;
+   end;
+
+procedure RegisterSender(elem: TBugReportSender; isFallback: Boolean = False);
+procedure RegisterGatherer(gather: TBugReportInfoGatherer; const ErrorID: array of string);
+
+}}}
+
+*TBugReportInfoGatherer* - собирает информацию о системе. Объект может возвращать информацию как текст, либо как файл (набор файлов). 
+Метод *GetInfo* возвращает True в том случае если собр файлов прошёл успешно, False в противоположно случае. Возвращаемые методом параметры это DataText (собранная информация) и/или FilesCount - количество подготовленных файлов с информацией.
+
+Метод *GetFileName* возвращает имя файла по индексу (начиная с нуля и до FilesCount-1). GetFileName возвращает пустую строку, GetInfo не был вызван, или индекс файла указан неверно.
+
+
+
+
+*TBugReportSender* - почтальон посылающий информацию об ошибке, методом *SendData*.
+Информация об ошибке
+
+ * ErrorText  - текст сообщения (может быть пустым)
+ * ErrorID    - идентификация сообщения (может быть пустой)
+ * FileNames  - список файлов с информацией (может быть пустым)
+ * FilesCount - количество файлов в списке (может быть равным нулю).
+
+Очень важно отправить всю информацию адресату, включая текст сообщения, идентификатор и файлы. В какой форме информация будет послана (и кто является адресатом), почтальон решает сам.
+
+Возможна ситуация, когда не будет никакой информации на посылку (нету ни текста, ни файлов), в таком случае почтальон решаем сам, как и должен ли он оповещать адресата или нет. 
+
+=== bprEmailReport ===
+{{{
+type
+  TMailDescr = record
+    subject  : string;
+    toemail  : string;
+    toname   : string;
+    fromname : string;
+  end;
+
+  TMailSender = class(TObject)
+  public
+    procedure SendMail(const s: TMailDescr; const text: WideString; const const AttachFiles: array of string); virtual; abstract;
+  end;
+
+
+// позволяет зарегистрировать любого почтальона 
+procedure RegisterMailSender (sender: TMailSender);
+
+// при вызове процедуры, dprmailreporter регистрирует TBugReportGatherer-а
+// процедуру достаточно вызвать один раз (при инициализации программы)
+// вызывать её можно в любом месте программы, в любой момент времени
+// вызов процедуры вызывает изменение параметров emailer-а 
+procedure InitMailReporter(const emailaddr, subject, fromname: string);
+
+
+type
+TMailDialogProc = function(const s: TMailDescr; const text: WideString; const const AttachFiles: array of string): Boolean;
+
+procedure SetMailDialog(aproc: TMailDialogProc);
+
+
+// посылает сообщение об ошибке
+function CreateBugReport(const Msg: AnsiString; const ErrorID: AnsiString): Boolean;
+
+implementation
+
+var
+  MailDialog: TMailDialogProc;
+
+type
+  TMailReporter = class(TBugReportSender)
+    subject : string;
+    function SendData(const ErrorText, ErrorID: string; const InfoFiles: array of string): Boolean; override;
+    procedure SetEmailAddress(const emailaddr, subject, fromname: string);
+  end;
+
+function TMailReporter.SendData(const ErrorText, ErrorID: string; const InfoFiles: array of string): Boolean; override;
+begin
+  Result:=(email<>'') and Assigned(emailsender);
+  if Result then begin
+    if Assigned(MailDialog) then
+      Result:=MailDialog(...);
+  end;
+  if not Result then Exit;
+  emailsender.SendMail(...);
+end;
+
+    
+var
+  mailreporter: TMailReporter;
+
+procedure InitMailReporter(const emailaddr, subject, fromname: string);
+begin
+  if not Assigned(mailreporter) then begin
+    mailreporter:=TMailReporter.Create;
+    RegisterSender(mailreporter);
+  end;
+  mailreporter.SetEmailAddress(emailaddr, subjet, fromname);
+end;
+
+}}}
+== bprFileFallback ==
+{{{
+Модуль предлагает интерфейс для обслуживания неотправленных сообщений. 
+При подключении в проект, модуль регистрирует fallback-почтальона для "отправки" багрепортов сообщений. Fallback-почтальон работает, только в том, если все другие почтальоны не смогли отправить багрепорт. Информация сохраняется в специально отведённой папке (файле), с возможностью её повторной отправки.
+
+type
+  // информация о неотправленном багрепорте
+  TUnsentReport = record
+    Descr : WideString; 
+    Date  : TBugReportDate;
+    //more?
+  end;
+
+// установить директорию куда записисывать/читать неотправленные багрепорты
+procedure SetFallbackDir(const ADir: WideString); 
+// прочитать количество неотправленных сообщений
+//function GetUnsentReportsCount: Integer;
+// послать отчёты ещё раз
+procedure ResendReports;
+
+type
+  // Callback процедуры при энумерации неотправленных объектов
+  TUnsentReportEnumProc = procedure (const Unsent: TUnsentReport; UserData: Pointer);
+  TUnsentReportEnumEvent = procedure (const Unsent: TUnsentReport) of object;
+
+
+// Процедуры энумерации просматривают сохранённые сообщения в директории 
+// указанной процедурой SetFallbackDir (по-умолчанию иначе в папке пользователя)
+// При обнаружении очередного неотправленного сообщения, процедуры вызывают
+// callback (процедуру или метод объекта), сообщая информацию о багрепорте
+// структурой TUnsentReport
+procedure GetUnsentReportInfo(enumproc: TUnsentReportEnumProc; UserData: Pointer); overload;
+procedure GetUnsentReportInfo(enumeven: TUnsentReportEnumEvent); overload;
+
+
+}}}
+
+== bprScreenshot ==
+
+Модуль хранит в себе реализацию сборщика данных для получения снимка экрана рабочего стола. 
+
+Для того чтобы получать снимок экрана вместе с каждым баг-репортом, необходимо просто подключить модуль в проект. 
+
+*ВНИМАНИЕ:* снимок экрана может быть утечкой личных данных о пользователя!
